@@ -1,13 +1,20 @@
-(($, ko) ->
-  getWriteableObservable = (valueAccessor) ->
-    unless ko.isWriteableObservable(valueAccessor())
-      throw '[knockout-binding-tinymce] The value bound to tinymce must be a writeable observable'
-    valueAccessor()
-
+(($, ko, tinymce) ->
   ko.bindingHandlers['tinymce']  =
     init: (element, valueAccessor, allBindings, viewModel, bindingContext) ->
       observable = getWriteableObservable(valueAccessor)
 
       $(element).text observable()
 
-)(jQuery, ko)
+      settings = {
+        setup: (editor) ->
+          editor.on 'change', (e) ->
+            observable(editor.getContent())
+      }
+      window.setTimeout (-> $(element).tinymce(settings)), 0
+
+  getWriteableObservable = (valueAccessor) ->
+    unless ko.isWriteableObservable(valueAccessor())
+      throw '[knockout-binding-tinymce] The value bound to tinymce must be a writeable observable'
+    valueAccessor()
+
+)(jQuery, ko, tinymce)

@@ -21,6 +21,8 @@ module.exports = (grunt) ->
           vendor: [
             'node_modules/jquery/dist/jquery.js',
             'node_modules/underscore/underscore.js',
+            'node_modules/tinymce/tinymce.js',
+            'node_modules/tinymce/jquery.tinymce.min.js',
             'node_modules/jasmine-set/jasmine-set.js',
             'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
             'node_modules/knockout/build/output/knockout-latest.js',
