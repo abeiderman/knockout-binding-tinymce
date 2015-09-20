@@ -1,7 +1,10 @@
 {
   "name": "knockout-binding-tinymce",
-  "version": "0.1.0",
   "homepage": "https://github.com/abeiderman/knockout-binding-tinymce",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:abeiderman/knockout-binding-tinymce.git"
+  }
   "authors": [
     "Alejandro Beiderman"
   ],
@@ -13,5 +16,13 @@
     "test",
     "tests",
     "spec"
+  ],
+  "main": [
+    "knockout-binding-tinymce.js"
+  ],
+  "keywords": [
+    "knockout",
+    "binding",
+    "tinymce"
   ]
 }
