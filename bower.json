@@ -1,0 +1,24 @@
+{
+  "name": "knockout-binding-tinymce",
+  "version": "0.1.0",
+  "homepage": "https://github.com/abeiderman/knockout-binding-tinymce",
+  "authors": [
+    "Alejandro Beiderman"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "knockout": "~3.3.0",
+    "tinymce": "~4.2.5"
+  },
+  "devDependencies": {
+    "jasmine-jquery": "~2.1.0",
+    "jquery": "~2.1.4"
+  }
+}
