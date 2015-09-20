@@ -19,10 +19,12 @@ module.exports = (grunt) ->
           specs: 'spec/js/**/*.spec.js'
           helper: 'spec/js/**/*.helper.js'
           vendor: [
-            'bower_components/jquery/dist/jquery.js',
-            'bower_components/jasmine-jquery/lib/jasmine-jquery.js',
-            'bower_components/knockout/dist/knockout.js',
-            'bower_components/tinymce/tinymce.jquery.js'
+            'node_modules/jquery/dist/jquery.js',
+            'node_modules/underscore/underscore.js',
+            'node_modules/jasmine-set/jasmine-set.js',
+            'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+            'node_modules/knockout/build/output/knockout-latest.js',
+            'node_modules/tinymce/tinymce.jquery.js'
           ]
 
   grunt.loadNpmTasks 'grunt-contrib-uglify'
