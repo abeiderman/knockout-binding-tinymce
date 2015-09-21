@@ -1,15 +1,16 @@
 (($, ko, tinymce) ->
   ko.bindingHandlers['tinymce']  =
+    defaults: {}
     init: (element, valueAccessor, allBindings, viewModel, bindingContext) ->
       observable = getWriteableObservable(valueAccessor)
 
       $(element).text(observable())
 
-      settings = {
+      settings = $.extend(true, {}, ko.bindingHandlers['tinymce'].defaults, {
         setup: (editor) ->
           editor.on 'change keyup nodechange', (e) ->
             observable(editor.getContent())
-      }
+      })
       window.setTimeout (-> $(element).tinymce(settings)), 0
 
       ko.utils['domNodeDisposal'].addDisposeCallback element, ->

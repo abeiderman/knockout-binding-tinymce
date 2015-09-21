@@ -29,6 +29,16 @@ describe 'tinymce binding', ->
       it 'throws an exception', ->
         expect(-> applyBindings(viewModel: { richText: ko.computed -> 'nothing' })).toThrow()
 
+    describe 'when defaults are provided', ->
+      beforeEach (done) ->
+        ko.bindingHandlers['tinymce'].defaults = {plugins: 'table'}
+        spyOn($.fn, 'tinymce')
+        applyBindings()
+        window.setTimeout done, 10
+
+      it 'includes the defaults in the tinymce initialization', ->
+        expect($.fn.tinymce).toHaveBeenCalledWith(jasmine.objectContaining({plugins: 'table'}))
+
   describe 'when content is updated in the editor', ->
     beforeEach (done) ->
       @viewModel = { richText: ko.observable('Initial data') }
