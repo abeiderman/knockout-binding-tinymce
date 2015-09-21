@@ -22,7 +22,12 @@
         });
       },
       update: function(element, valueAccessor) {
-        return getEditor(element).setContent(valueAccessor()());
+        var editor, value;
+        value = valueAccessor()();
+        editor = getEditor(element);
+        if (editor.getContent() !== value) {
+          return editor.setContent(value);
+        }
       }
     };
     getWriteableObservable = function(valueAccessor) {

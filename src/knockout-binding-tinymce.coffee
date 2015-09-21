@@ -17,7 +17,9 @@
         getEditor(element).remove()
 
     update: (element, valueAccessor) ->
-      getEditor(element).setContent(valueAccessor()())
+      value = valueAccessor()()
+      editor = getEditor(element)
+      editor.setContent(value) unless editor.getContent() is value
 
   getWriteableObservable = (valueAccessor) ->
     unless ko.isWriteableObservable(valueAccessor())

@@ -66,3 +66,8 @@ describe 'tinymce binding', ->
       @viewModel.richText('New data')
 
       expect(editor().getContent()).toContain('New data')
+
+    it 'does not update content if it has not changed', ->
+      spyOn(editor(), 'setContent')
+      @viewModel.richText.valueHasMutated()
+      expect(editor().setContent).not.toHaveBeenCalled()
