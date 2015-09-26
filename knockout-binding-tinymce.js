@@ -1,6 +1,6 @@
 (function() {
   (function($, ko, tinymce) {
-    var getEditor, getWriteableObservable;
+    var getEditor, getWriteableObservable, nullEditor;
     ko.bindingHandlers['tinymce'] = {
       defaults: {},
       init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
@@ -36,14 +36,13 @@
       }
       return valueAccessor();
     };
-    return getEditor = function(element) {
-      var nullEditor;
-      nullEditor = {
-        remove: (function() {}),
-        getContent: (function() {}),
-        setContent: (function() {})
-      };
+    getEditor = function(element) {
       return $(element).tinymce() || nullEditor;
+    };
+    return nullEditor = {
+      remove: (function() {}),
+      getContent: (function() {}),
+      setContent: (function() {})
     };
   })(jQuery, ko, tinymce);
 

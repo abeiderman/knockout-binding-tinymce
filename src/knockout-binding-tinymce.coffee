@@ -26,8 +26,7 @@
       throw '[knockout-binding-tinymce] The value bound to tinymce must be a writeable observable'
     valueAccessor()
 
-  getEditor = (element) ->
-    nullEditor = {remove: (->), getContent: (->), setContent: (->)}
-    $(element).tinymce() || nullEditor
+  getEditor = (element) -> $(element).tinymce() || nullEditor
 
+  nullEditor = {remove: (->), getContent: (->), setContent: (->)}
 )(jQuery, ko, tinymce)
