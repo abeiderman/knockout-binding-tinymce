@@ -3,10 +3,13 @@
     defaults: {}
     init: (element, valueAccessor, allBindings, viewModel, bindingContext) ->
       observable = getWriteableObservable(valueAccessor)
+      initCallback = ->
+      initCallback = allBindings.get('tinymceInitCallback') if allBindings.has('tinymceInitCallback')
 
       $(element).text(observable())
 
       settings = $.extend(true, {}, ko.bindingHandlers['tinymce'].defaults, {
+        oninit: (editor) -> initCallback()
         setup: (editor) ->
           editor.on 'change keyup nodechange', (e) ->
             observable(editor.getContent())

@@ -4,10 +4,17 @@
     ko.bindingHandlers['tinymce'] = {
       defaults: {},
       init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-        var observable, settings;
+        var initCallback, observable, settings;
         observable = getWriteableObservable(valueAccessor);
+        initCallback = function() {};
+        if (allBindings.has('tinymceInitCallback')) {
+          initCallback = allBindings.get('tinymceInitCallback');
+        }
         $(element).text(observable());
         settings = $.extend(true, {}, ko.bindingHandlers['tinymce'].defaults, {
+          oninit: function(editor) {
+            return initCallback();
+          },
           setup: function(editor) {
             return editor.on('change keyup nodechange', function(e) {
               return observable(editor.getContent());

@@ -39,6 +39,19 @@ describe 'tinymce binding', ->
       it 'includes the defaults in the tinymce initialization', ->
         expect($.fn.tinymce).toHaveBeenCalledWith(jasmine.objectContaining({plugins: 'table'}))
 
+  describe 'initialization callback', ->
+    beforeEach (done) ->
+      @viewModel = { richText: ko.observable(), init: -> }
+      spyOn(@viewModel, 'init')
+      applyBindings(
+        fixture: '<textarea id="target" data-bind="tinymce: richText, tinymceInitCallback: init"></textarea>'
+        viewModel: @viewModel)
+      waitForEditorToInitialize(done)
+
+    it 'calls the init callback', ->
+      expect(@viewModel.init).toHaveBeenCalled()
+
+
   describe 'when content is updated in the editor', ->
     beforeEach (done) ->
       @viewModel = { richText: ko.observable('Initial data') }
