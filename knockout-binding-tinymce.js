@@ -12,6 +12,7 @@
         }
         $(element).text(observable());
         settings = $.extend(true, {}, ko.bindingHandlers['tinymce'].defaults, {
+          entity_encoding: 'raw',
           oninit: function(editor) {
             return initCallback();
           },

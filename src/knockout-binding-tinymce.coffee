@@ -9,6 +9,7 @@
       $(element).text(observable())
 
       settings = $.extend(true, {}, ko.bindingHandlers['tinymce'].defaults, {
+        entity_encoding: 'raw',
         oninit: (editor) -> initCallback()
         setup: (editor) ->
           editor.on 'change keyup nodechange', (e) ->
